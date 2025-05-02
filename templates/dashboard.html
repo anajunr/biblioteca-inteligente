@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel - Bibliotecário</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Biblioteca Inteligente</h1>
+  </header>
+
+  <div class="container">
+    <h2>Bem-vindo(a), {{ usuario }} (Bibliotecário)</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <ul>
+      <li><a href="/cadastrar_livro">Cadastrar Livro</a></li>
+      <li><a href="/buscar">Buscar Livro</a></li>
+      <li><a href="/emprestar">Emprestar Livro</a></li>
+      <li><a href="/logout">Sair</a></li>
+    </ul>
+
+    <h3>Empréstimos Ativos:</h3>
+    {% if emprestimos %}
+      <ul>
+        {% for emp in emprestimos %}
+          <li>
+            <strong>{{ emp.aluno }}</strong> — Livro: {{ emp.codigo }} — Empréstimo: {{ emp.data }} — Devolver até: {{ emp.previsao }}
+            <form method="POST" action="/devolver" style="display:inline;">
+              <input type="hidden" name="codigo" value="{{ emp.codigo }}">
+              <button type="submit">Devolver</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhum empréstimo ativo.</p>
+    {% endif %}
+    
+    <h3>Reservas de Livros:</h3>
+    {% if reservas %}
+        <ul>
+            {% for r in reservas %}
+                <li>
+                    <strong>{{ r.aluno }}</strong> — Código do livro: {{ r.codigo }} — Solicitado em: {{ r.data }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Não há reservas registradas.</p>
+    {% endif %}
+
+  </div>
+</body>
+</html>

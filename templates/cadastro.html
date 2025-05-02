@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Aluno</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Biblioteca Inteligente</h1>
+  </header>
+
+  <div class="container">
+    <h2>Cadastro de Aluno</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" required>
+
+      <label for="matricula">Matrícula:</label>
+      <input type="text" name="matricula" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" name="senha" required>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <p><a href="/">← Voltar ao login</a></p>
+  </div>
+</body>
+</html>

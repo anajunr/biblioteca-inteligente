@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Biblioteca - Aluno</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Biblioteca Inteligente</h1>
+  </header>
+
+  <div class="container">
+    <h2>Olá, {{ usuario }} (Aluno)</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h3>Livros Disponíveis para Reserva:</h3>
+    {% if livros %}
+      <ul>
+        {% for livro in livros %}
+          <li>
+            <strong>{{ livro.titulo }}</strong> — {{ livro.autor }} ({{ livro.genero }}) —
+            {% if livro.disponivel %}
+              <form method="POST" style="display:inline;">
+                <input type="hidden" name="codigo" value="{{ livro.codigo }}">
+                <button type="submit">Reservar</button>
+              </form>
+            {% else %}
+              <span class="error">Indisponível</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhum livro cadastrado no sistema.</p>
+    {% endif %}
+
+    <p><a href="/logout">Sair</a></p>
+  </div>
+</body>
+</html>

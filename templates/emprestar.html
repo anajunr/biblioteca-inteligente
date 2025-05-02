@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Emprestar Livro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Biblioteca Inteligente</h1>
+  </header>
+
+  <div class="container">
+    <h2>Emprestar Livro</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <label for="aluno">Nome do aluno:</label>
+      <input type="text" name="aluno" required>
+
+      <label for="codigo">Código do livro:</label>
+      <input type="text" name="codigo" required>
+
+      <button type="submit">Confirmar Empréstimo</button>
+    </form>
+
+    <p><a href="/dashboard">← Voltar ao painel</a></p>
+  </div>
+</body>
+</html>

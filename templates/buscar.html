@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscar Livro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Biblioteca Inteligente</h1>
+  </header>
+
+  <div class="container">
+    <h2>Consulta de Livros</h2>
+
+    {% if livros %}
+      <ul>
+        {% for livro in livros %}
+          <li>
+            <strong>{{ livro.titulo }}</strong> — {{ livro.autor }} ({{ livro.genero }}) —
+            {% if livro.disponivel %}
+              <span class="success">Disponível</span>
+            {% else %}
+              <span class="error">Emprestado</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhum livro cadastrado.</p>
+    {% endif %}
+
+    <p>
+      <a href="{{ url_for('dashboard') if session['tipo'] == 'bibliotecario' else url_for('aluno') }}">← Voltar</a>
+    </p>
+  </div>
+</body>
+</html>

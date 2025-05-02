@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Biblioteca Inteligente</title>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Biblioteca Inteligente</h2>
+    <ul>
+      <li>📘 Cadastrar Livro</li>
+      <li>👤 Cadastrar Usuário</li>
+      <li>🔍 Procurar Livro</li>
+    </ul>
+  </div>
+  <div class="main">
+    <div class="cards">
+      <div class="card">
+        <h3>Total de livros no acervo</h3>
+        <p>350</p>
+      </div>
+      <div class="card">
+        <h3>Empréstimos em andamento</h3>
+        <p>28</p>
+      </div>
+      <div class="card">
+        <h3>Atrasos</h3>
+        <p>5</p>
+      </div>
+    </div>
+
+    <div class="form">
+      <h3>Cadastro por Livro</h3>
+      <label for="aluno">Buscar por nome do aluno</label>
+      <input type="text" id="aluno" placeholder="Nome do aluno">
+
+      <label for="livro">Buscar por código ou nome do livro</label>
+      <input type="text" id="livro" placeholder="Código ou nome do livro">
+
+      <label for="dataEmprestimo">Data de empréstimo</label>
+      <input type="date" id="dataEmprestimo">
+
+      <label for="dataDevolucao">Previsão de devolução</label>
+      <input type="date" id="dataDevolucao">
+
+      <button class="btn-emprestimo">Realizar Empréstimo</button>
+      <button class="btn-devolucao">Registrar Devolução</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[
+    {
+        "titulo": "Iracema",
+        "autor": "José de Alencar",
+        "genero": " Romance",
+        "codigo": "1",
+        "disponivel": true
+    },
+    {
+        "titulo": "Dom Casmurro",
+        "autor": "Machado de Assis",
+        "genero": "Romance, Ficção, Memórias, Realismo Literário",
+        "codigo": "002",
+        "disponivel": true
+    }
+]
